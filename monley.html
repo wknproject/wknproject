@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monley — wkn.project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#414142;
+    --ink-soft:#6E6E70;
+    --cream:#F4F5F6;
+    --line:#E1E3E6;
+    --teal:#1385AE;
+    --teal-deep:#0C6483;
+    --amber:#FDBC15;
+    --coral:#DA4756;
+    --card:#FFFFFF;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+  }
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 28px;}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:20;
+    background:rgba(244,245,246,0.9);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    max-width:920px;
+    display:flex;align-items:center;justify-content:space-between;
+    padding-top:18px;padding-bottom:18px;
+  }
+  .brand{
+    display:flex;align-items:baseline;gap:8px;
+    font-weight:800;font-size:17px;letter-spacing:-0.01em;
+  }
+  .brand .mono{font-size:11px;color:var(--teal);font-weight:500;}
+  .back-link{
+    font-size:13px;font-weight:600;color:var(--ink-soft);
+    display:flex;align-items:center;gap:6px;
+  }
+  .back-link:hover{color:var(--teal-deep);}
+
+  /* HEADER BLOCK */
+  .entry-head{padding:56px 0 40px;border-bottom:1px solid var(--line);}
+  .entry-head .status-row{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+  .status{
+    font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;
+    padding:6px 12px;border-radius:100px;white-space:nowrap;
+    background:rgba(19,133,174,0.1);color:var(--teal-deep);
+    display:flex;align-items:center;gap:6px;
+  }
+  .status::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal);}
+  .entry-head .date{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink-soft);}
+  .entry-head h1{font-size:40px;font-weight:800;letter-spacing:-0.03em;}
+  .entry-head .tagline{
+    margin-top:10px;font-family:'JetBrains Mono',monospace;font-style:italic;
+    font-size:16px;color:var(--teal-deep);
+  }
+
+  /* BODY */
+  .entry-body{padding:48px 0 24px;}
+  .entry-body section{margin-bottom:48px;}
+  .entry-body h2{font-size:20px;font-weight:800;letter-spacing:-0.02em;margin-bottom:16px;}
+  .entry-body p{font-size:15.5px;color:var(--ink-soft);margin-bottom:14px;}
+  .entry-body p:last-child{margin-bottom:0;}
+  .entry-body strong{color:var(--ink);}
+
+  ul.feature-list{list-style:none;}
+  ul.feature-list li{
+    font-size:15px;color:var(--ink);padding:12px 0 12px 26px;position:relative;
+    border-bottom:1px solid var(--line);
+  }
+  ul.feature-list li:first-child{border-top:1px solid var(--line);}
+  ul.feature-list li::before{
+    content:"";position:absolute;left:0;top:19px;width:8px;height:8px;
+    border-radius:2px;background:var(--amber);
+  }
+  ul.feature-list li.flagship::before{background:var(--teal);}
+  ul.feature-list li.flagship{font-weight:600;}
+
+  /* OPEN SOURCE CALLOUT */
+  .callout{
+    background:var(--teal-deep);color:var(--cream);border-radius:var(--radius);
+    padding:32px 30px;position:relative;overflow:hidden;
+  }
+  .callout::after{
+    content:"";position:absolute;right:-30px;top:-30px;width:140px;height:140px;
+    border-radius:50%;background:radial-gradient(circle,rgba(253,188,21,0.3),transparent 70%);
+  }
+  .callout h2{color:var(--cream);}
+  .callout p{color:rgba(244,245,246,0.8);}
+  .callout .badges{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;}
+  .callout .badge{
+    font-family:'JetBrains Mono',monospace;font-size:11px;padding:6px 12px;
+    border-radius:100px;background:rgba(244,245,246,0.12);color:var(--cream);
+  }
+
+  /* SCREENSHOT */
+  .screenshot{
+    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+    background:var(--card);margin:28px 0;
+  }
+  .screenshot .frame{
+    aspect-ratio:16/10;background:
+      linear-gradient(135deg, rgba(19,133,174,0.06), rgba(253,188,21,0.06));
+    display:flex;align-items:center;justify-content:center;
+    color:var(--ink-soft);font-size:13px;text-align:center;padding:20px;
+  }
+  .screenshot .caption{
+    padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;
+    color:var(--ink-soft);border-top:1px solid var(--line);
+  }
+
+  /* HOW IT'S BUILT TAGS */
+  .stack-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
+  .stack-tag{
+    font-family:'JetBrains Mono',monospace;font-size:11px;padding:6px 12px;
+    border-radius:100px;background:rgba(19,133,174,0.08);color:var(--teal-deep);
+  }
+
+  /* STEPS */
+  ol.steps{list-style:none;counter-reset:step;}
+  ol.steps li{
+    counter-increment:step;
+    display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);
+    font-size:15px;color:var(--ink);
+  }
+  ol.steps li:last-child{border-bottom:none;}
+  ol.steps li::before{
+    content:counter(step);
+    font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;
+    color:var(--teal-deep);background:rgba(19,133,174,0.1);
+    width:26px;height:26px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .steps-note{
+    margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:12.5px;
+    color:var(--ink-soft);font-style:italic;
+  }
+
+  /* FEEDBACK */
+  .feedback-box{
+    border:1px dashed var(--coral);border-radius:var(--radius);padding:26px 28px;
+    background:rgba(218,71,86,0.04);
+  }
+  .feedback-box h2{margin-bottom:12px;}
+  .feedback-box .q{
+    font-size:15px;color:var(--ink);margin-bottom:10px;padding-left:18px;position:relative;
+  }
+  .feedback-box .q::before{content:"?";position:absolute;left:0;color:var(--coral);font-weight:800;}
+  .feedback-box .contact-line{
+    margin-top:18px;font-size:13.5px;color:var(--ink-soft);
+  }
+
+  footer{
+    padding:28px 0 40px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:12.5px;color:var(--ink-soft);
+  }
+  footer .mono{font-size:11px;}
+
+  @media (max-width:640px){
+    .entry-head h1{font-size:30px;}
+    ol.steps li{font-size:14px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">wkn.project <span class="mono">/ lab</span></div>
+    <a href="index.html" class="back-link">&larr; back to lab</a>
+  </nav>
+</header>
+
+<div class="entry-head wrap">
+  <div class="status-row">
+    <div class="status">active</div>
+    <span class="date mono">JUL 2026</span>
+  </div>
+  <h1>Monley</h1>
+  <div class="tagline">"Where is my money?"</div>
+</div>
+
+<div class="entry-body wrap">
+
+  <section>
+    <h2>The spark</h2>
+    <p>I've been tracking my spending for a while. The habit was never the hard part, consistency was.</p>
+    <p>It started in Excel, building my own formulas to answer one thing: not just where the money went, but how much I had left to spend, right now.</p>
+    <p>I tried the usual apps too. Feature-rich, well designed, and somehow still too heavy to open every day. So I moved back to Google Sheets and started over.</p>
+    <p>Now, with AI in the picture, I started thinking about simplifying it properly: less columns to fill, better UI, and using AI as part of the build itself.</p>
+    <p>That's Monley. Built to answer one question honestly: <strong>where is my money?</strong></p>
+  </section>
+
+  <section>
+    <h2>What it does</h2>
+    <ul class="feature-list">
+      <li class="flagship">Daily spend limit, calculated live, so you always know how much is actually safe to spend today, not just what's left in the month</li>
+      <li>Logs daily spend against a monthly cycle, not a calendar month</li>
+      <li>Quick-add, built to remove the friction that made the old apps feel heavy</li>
+      <li>A reconciliation view at the end of each cycle, so you know, not guess</li>
+      <li>Splits fixed costs (rent, recurring transfers) from actual daily spend</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="screenshot">
+      <img src="images/monley-log.png" alt="Monley main daily view showing today's spend limit" style="width:100%;display:block;">
+      <div class="caption mono">fig. 01 — daily view, showing today's spend limit</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="callout">
+      <h2>Open, and yours to build on</h2>
+      <p>Monley isn't staying locked to my own sheet. The plan is to open it up fully, the template and the script, so anyone can copy it, run it, and shape it into their own version.</p>
+      <p>No installation. No coding skills needed. It runs entirely online, inside a Google Sheet you already have.</p>
+      <div class="badges">
+        <span class="badge">open source</span>
+        <span class="badge">no install</span>
+        <span class="badge">runs in your browser</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How it's built</h2>
+    <p>No backend, no hosting bill, no new account to create. Monley is a Google Apps Script web app sitting directly on top of a Google Sheet.</p>
+    <div class="stack-row">
+      <span class="stack-tag">Google Apps Script</span>
+      <span class="stack-tag">Google Sheets</span>
+      <span class="stack-tag">HTML / CSS / JS</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="screenshot">
+      <img src="images/monley-breakdown.png" alt="Monley spend breakdown by category" style="width:100%;display:block;">
+      <div class="caption mono">fig. 02 — spend breakdown, by category</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Try it yourself</h2>
+    <ol class="steps">
+      <li>Make your own copy of the Monley template sheet <a href="#" style="color:var(--teal-deep);font-weight:600;">[link]</a></li>
+      <li>Open <strong>Extensions &rarr; Apps Script</strong> from that sheet</li>
+      <li>Paste in the Monley script <a href="#" style="color:var(--teal-deep);font-weight:600;">[link to code]</a></li>
+      <li>Click <strong>Deploy &rarr; New deployment &rarr; Web app</strong></li>
+      <li>Set access to "Only myself" (or "Anyone with the link" if you want to share it)</li>
+      <li>Copy the web app URL, bookmark it, start logging</li>
+    </ol>
+    <div class="steps-note">Takes about ten minutes the first time. Just patience.</div>
+  </section>
+
+  <section>
+    <div class="screenshot">
+      <img src="images/monley-history.png" alt="Monley cycle history and reconciliation view" style="width:100%;display:block;">
+      <div class="caption mono">fig. 03 — history log, reconciliation across the cycle</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="feedback-box">
+      <h2>What I'd love feedback on</h2>
+      <div class="q">Does the daily logging actually feel light enough to stick with?</div>
+      <div class="q">Does splitting fixed vs daily spend match how you think about your own money?</div>
+      <div class="q">Tell me what broke.</div>
+      <div class="contact-line">If you try it and have thoughts, reach out, this entry updates as the experiment does.</div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="wrap">
+  <span>wkn.project, Jakarta</span>
+  <span class="mono">last updated JUL 2026</span>
+</footer>
+
+</body>
+</html>

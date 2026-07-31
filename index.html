@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bang - Project Ledger</title>
+<title>wkn.project</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#14231F;
-    --ink-soft:#4A5B56;
-    --cream:#FBF9F4;
-    --line:#E4DFD3;
-    --teal:#0F6F6B;
-    --teal-deep:#0A4C49;
-    --amber:#E8A33D;
-    --coral:#F1633F;
+    --ink:#414142;
+    --ink-soft:#6E6E70;
+    --cream:#F4F5F6;
+    --line:#E1E3E6;
+    --teal:#1385AE;
+    --teal-deep:#0C6483;
+    --amber:#FDBC15;
+    --coral:#DA4756;
     --card:#FFFFFF;
     --radius:14px;
   }
@@ -57,7 +57,7 @@
   .eyebrow{
     display:inline-flex;align-items:center;gap:8px;
     font-family:'JetBrains Mono',monospace;font-size:12px;
-    color:var(--teal-deep);background:rgba(15,111,107,0.08);
+    color:var(--teal-deep);background:rgba(19,133,174,0.08);
     padding:6px 12px;border-radius:100px;margin-bottom:22px;
     letter-spacing:0.02em;
   }
@@ -101,21 +101,29 @@
   .entry .date{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink-soft);}
   .entry .title{font-weight:700;font-size:16.5px;margin-bottom:6px;letter-spacing:-0.01em;}
   .entry .desc{font-size:14px;color:var(--ink-soft);max-width:460px;}
-  .tags{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
+  .materials-label{
+    font-size:10px;color:var(--ink-soft);text-transform:uppercase;
+    letter-spacing:0.08em;margin-top:14px;margin-bottom:6px;
+  }
+  .tags{display:flex;gap:6px;flex-wrap:wrap;}
   .tag{
     font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:4px 9px;
-    border-radius:100px;background:rgba(15,111,107,0.08);color:var(--teal-deep);
+    border-radius:100px;background:rgba(19,133,174,0.08);color:var(--teal-deep);
   }
-  .tag.amber{background:rgba(232,163,61,0.15);color:#8A5A0F;}
+  .tag.amber{background:rgba(253,188,21,0.15);color:#8A5A0F;}
   .status{
     font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;
     padding:6px 12px;border-radius:100px;white-space:nowrap;
-    background:rgba(241,99,63,0.1);color:var(--coral);
+    background:rgba(218,71,86,0.1);color:var(--coral);
     display:flex;align-items:center;gap:6px;
   }
   .status::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--coral);}
-  .status.live{background:rgba(15,111,107,0.1);color:var(--teal-deep);}
+  .status.live{background:rgba(19,133,174,0.1);color:var(--teal-deep);}
   .status.live::before{background:var(--teal);}
+  .status.shelved{background:rgba(253,188,21,0.15);color:#8A5A0F;}
+  .status.shelved::before{background:var(--amber);}
+  .status.archived{background:rgba(65,65,66,0.08);color:var(--ink-soft);}
+  .status.archived::before{background:var(--ink-soft);}
   .entry-link{
     display:inline-flex;align-items:center;gap:4px;margin-top:10px;
     font-size:13px;font-weight:700;color:var(--teal-deep);
@@ -149,7 +157,7 @@
   }
   .collab-card::after{
     content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;
-    border-radius:50%;background:radial-gradient(circle,rgba(232,163,61,0.35),transparent 70%);
+    border-radius:50%;background:radial-gradient(circle,rgba(253,188,21,0.35),transparent 70%);
   }
   .collab-card h3{font-size:24px;font-weight:800;margin-bottom:10px;letter-spacing:-0.02em;}
   .collab-card p{font-size:14.5px;color:rgba(251,249,244,0.75);max-width:420px;margin-bottom:22px;}
@@ -180,28 +188,28 @@
 
 <header>
   <nav class="wrap">
-    <div class="brand">Bang <span class="mono">/ ledger</span></div>
+    <div class="brand">wkn.project <span class="mono">/ lab</span></div>
     <div class="navlinks">
       <a href="#projects">Projects</a>
       <a href="#about">About</a>
-      <a href="#collab">Collaborate</a>
+      <!-- <a href="#collab">Collaborate</a> hidden while collab section is hidden -->
     </div>
   </nav>
 </header>
 
 <section class="hero">
   <div class="wrap">
-    <div class="eyebrow">personal ledger, updated as things ship</div>
-    <h1>A running record of what I build <span class="accent">outside the day job.</span></h1>
-    <p>I lead customer experience work by day. Outside of it, I build small tools for myself, and this is where each one gets logged, dated, and kept honest about its status.</p>
+    <div class="eyebrow">experiments logged as they run</div>
+    <h1>A running log of what I experiment with <span class="accent">outside the day job.</span></h1>
+    <p>I lead customer experience work by day. Outside of it, I build small things out of curiosity, and this is where each one gets tried, dated, and kept honest about how it's going.</p>
 
     <div class="ledger-strip">
       <div class="cell">
-        <span class="label">Entries logged</span>
+        <span class="label">Experiments run</span>
         <span class="val">01</span>
       </div>
       <div class="cell">
-        <span class="label">Currently live</span>
+        <span class="label">Currently active</span>
         <span class="val">01</span>
       </div>
       <div class="cell">
@@ -214,51 +222,55 @@
 
 <section id="projects" class="wrap">
   <div class="section-head">
-    <h2>Project entries</h2>
+    <h2>Experiments</h2>
     <span class="count mono">sorted by date, newest first</span>
   </div>
 
   <div class="entry">
     <div class="date">JUL 2026</div>
     <div>
-      <div class="title">Daily Spend Tracker</div>
+      <div class="title">Monley</div>
+      <div class="desc mono" style="font-style:italic;margin-bottom:6px;">"Where is my money?"</div>
       <div class="desc">A personal expense tracker built as a Google Apps Script web app, writing straight to a Google Sheet. Full custom design system, rupiah-formatted, built for daily use rather than a demo.</div>
+      <div class="materials-label mono">materials</div>
       <div class="tags">
         <span class="tag">Apps Script</span>
         <span class="tag">Google Sheets</span>
         <span class="tag amber">Design System</span>
       </div>
-      <a href="#" class="entry-link">View case study <span class="arrow">&rarr;</span></a>
+      <a href="monley.html" class="entry-link">View case study <span class="arrow">&rarr;</span></a>
     </div>
-    <div class="status live">in daily use</div>
+    <div class="status live">active</div>
   </div>
 
   <div class="empty-entry">
     <div class="date">NEXT</div>
-    <div class="desc">Next entry pending. Check back soon.</div>
+    <div class="desc">Next experiment pending. Check back soon.</div>
   </div>
 </section>
 
 <section id="about" class="about">
   <div class="wrap">
-    <h2>About this ledger</h2>
-    <p>I spend most of my working hours thinking about customer journeys at scale. This site is the opposite scale: small, personal, self-directed projects that exist because I got curious about something and wanted to build it end to end.</p>
-    <p>Nothing here is polished for its own sake. Each entry stays as close to the real, working version as I can show it, status included.</p>
+    <h2>About this lab</h2>
+    <p>By day, I think about customer journeys at the scale of millions. Here, it's the same instinct, just applied at the scale of one. Just an idea, and enough of a weekend to see it through.</p>
+    <p>Just the craft itself: notice something ordinary, imagine it a little better, build it, find out if it holds up.</p>
+    <p>Nothing here is polished for its own sake. Each experiment stays as close to the real, working version as I can show it, status included, results included, whether they worked or not.</p>
   </div>
 </section>
 
-<section id="collab" class="collab">
+<section id="collab" class="collab" style="display:none;">
+  <!-- Hidden for now, keeping markup in place to re-enable later -->
   <div class="wrap">
     <div class="collab-card">
-      <h3>Working on something together?</h3>
-      <p>This ledger is also where collaborative projects will get their own entries once they're underway. If you're thinking about building something and want a partner, reach out.</p>
+      <h3>Got something to experiment on together?</h3>
+      <p>This lab is also where collaborative projects will get their own entries once they're underway. If you're thinking about building something and want a partner, reach out.</p>
       <a href="mailto:you@example.com" class="btn">Get in touch &rarr;</a>
     </div>
   </div>
 </section>
 
 <footer class="wrap">
-  <span>Bang, Jakarta</span>
+  <span>wkn.project, Jakarta</span>
   <span class="mono">last updated JUL 2026</span>
 </footer>
 

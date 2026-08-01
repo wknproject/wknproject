@@ -94,11 +94,17 @@
 
   /* LEDGER ENTRIES */
   .entry{
-    display:grid;grid-template-columns:100px 1fr auto;gap:20px;align-items:center;
+    display:grid;grid-template-columns:100px 1fr auto;gap:20px;align-items:start;
     padding:22px 0;border-bottom:1px solid var(--line);
   }
   .entry:first-child{border-top:1px solid var(--line);}
   .entry .date{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink-soft);}
+  .entry-meta{display:flex;flex-direction:column;gap:12px;align-items:flex-start;}
+  .entry-thumb{
+    width:100px;height:72px;border-radius:8px;overflow:hidden;
+    background:var(--line);border:1px solid var(--line);flex-shrink:0;
+  }
+  .entry-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
   .entry .title{font-weight:700;font-size:16.5px;margin-bottom:6px;letter-spacing:-0.01em;}
   .entry .desc{font-size:14px;color:var(--ink-soft);max-width:460px;}
   .materials-label{
@@ -178,8 +184,9 @@
     .ledger-strip{flex-direction:column;}
     .ledger-strip .cell{border-right:none;border-bottom:1px solid var(--line);}
     .ledger-strip .cell:last-child{border-bottom:none;}
-    .entry{grid-template-columns:1fr;gap:8px;}
-    .entry .date{order:-1;}
+    .entry{grid-template-columns:1fr;gap:12px;}
+    .entry-meta{order:-1;flex-direction:row;align-items:center;gap:12px;}
+    .entry-thumb{width:72px;height:52px;}
     .navlinks{display:none;}
   }
 </style>
@@ -227,7 +234,12 @@
   </div>
 
   <div class="entry">
-    <div class="date">JUL 2026</div>
+    <div class="entry-meta">
+      <div class="date">JUL 2026</div>
+      <div class="entry-thumb">
+        <img src="images/monley-log-hd.png" alt="Monley preview">
+      </div>
+    </div>
     <div>
       <div class="title">Monley</div>
       <div class="desc mono" style="font-style:italic;margin-bottom:6px;">"Where is my money?"</div>

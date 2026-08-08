@@ -96,6 +96,14 @@
   ul.feature-list li.flagship::before{background:var(--teal);}
   ul.feature-list li.flagship{font-weight:600;}
 
+  .demo-cta{
+    display:inline-flex;align-items:center;gap:8px;margin-top:20px;
+    background:var(--teal);color:#fff;font-weight:700;font-size:14px;
+    padding:13px 22px;border-radius:100px;
+  }
+  .demo-cta .arrow{transition:transform 0.15s ease;}
+  .demo-cta:hover .arrow{transform:translateX(3px);}
+
   /* OPEN SOURCE CALLOUT */
   .callout{
     background:var(--teal-deep);color:var(--cream);border-radius:var(--radius);
@@ -116,8 +124,11 @@
   /* SCREENSHOT */
   .screenshot{
     border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
-    background:var(--card);margin:28px 0;
+    background:var(--card);margin:28px auto;max-width:300px;
+    box-shadow:0 4px 24px rgba(20,30,40,0.06);
   }
+  .screenshot img{max-height:520px;object-fit:contain;background:var(--cream);}
+  .screenshot .caption{text-align:center;}
   .screenshot .frame{
     aspect-ratio:16/10;background:
       linear-gradient(135deg, rgba(19,133,174,0.06), rgba(253,188,21,0.06));
@@ -221,6 +232,9 @@
       <li>A reconciliation view at the end of each cycle, so you know, not guess</li>
       <li>Splits fixed costs (rent, recurring transfers) from actual daily spend</li>
     </ul>
+    <a href="demo.html" target="_blank" rel="noopener noreferrer" class="demo-cta">
+      Try the live demo <span class="arrow">&rarr;</span>
+    </a>
   </section>
 
   <section>
